@@ -5,13 +5,13 @@ const db = mysql.createConnection({
   user: process.env.MYSQL_USER,
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
-  port: process.env.MYSQL_PORT
+  port: Number(process.env.MYSQL_PORT)
 });
 
 db.connect((err) => {
   if (err) {
-    console.error('Database connection failed');
-    return;
+    console.error('DB ERROR:', err.message);
+    process.exit(1); // MUHIIM
   }
   console.log('Database connected');
 });
